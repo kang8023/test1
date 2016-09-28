@@ -1,0 +1,31 @@
+payload = {'key1': 'value1', 'key2': 'value2'}
+ret = requests.get("http://httpbin.org/get", params=payload)
+
+print ret.url
+print ret.text
+
+payload = {'key1': 'value1', 'key2': 'value2'}
+ret = requests.post("http://httpbin.org/post", data=payload)
+
+# 2、发送请求头和数据实例
+ 
+import requests
+import json
+ 
+url = 'https://api.github.com/some/endpoint'    # 请求URL
+payload = {'some': 'data'}						# 数据字典
+headers = {'content-type': 'application/json'}  # 请求头
+ 
+ret = requests.post(url, data=json.dumps(payload), headers=headers)  # 指定请求头,发送的数据是'json'模式
+ 
+print ret.text	   # 请求的内容
+print ret.cookies  # 所有的cookie
+ret.cookies.get_dict() # cookie字典
+
+
+    # 登陆成功之后获取服务器响应的cookie
+    resp_cookies_dict = login_res.cookies.get_dict()
+    # 登陆成功后，获取服务器响应的内容
+    resp_text = login_res.text
+    # 登陆成功后，获取token
+    token = re.findall(".*token=(\d+)", resp_text)[0]
